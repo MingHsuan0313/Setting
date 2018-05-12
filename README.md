@@ -1,0 +1,2 @@
+# Setting
+(vimrc  , bashrc...etc)

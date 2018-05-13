@@ -49,8 +49,6 @@ runtime! macros/matchit.vim
 
 " Move up/down editor lines
 nnoremap j gj
-nnoremap k gk
-
 " Allow hidden buffers
 set hidden
 
@@ -114,6 +112,10 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+
+
 "NERDTree feature
 autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
@@ -124,6 +126,10 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
 
 
 
@@ -136,8 +142,39 @@ augroup javascript_folding
         au!
         au FileType javascript setlocal foldmethod=syntax
 augroup END
-
+"Jsx for React 
+let g:jsx_ext_required = 1
+let g:jsx_pragma_required = 1
 
 
 "python environment
 let g:syntastic_check_on_open = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+
+
+"vim-airline setting
+let g:airline_theme='wombat'
+let g:airline#extensions#tabline#enabled = 1 "Show tabs if only one is enabled.
+let g:airline#extensions#tabline#show_splits = 1 "enable/disable displaying open splits per tab (only when tabs are opened). >
+let g:airline#extensions#tabline#show_buffers = 1 " enable/disable displaying buffers with a single tab
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
+let g:airline_powerline_fonts = 1
+
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <C-X> :bdelete<CR>
+
+
+
+

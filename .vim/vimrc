@@ -6,7 +6,7 @@ set nocompatible
 filetype on
     
 " TODO: Load plugins here (pathogen or vundle)
-
+highlight LineNr ctermfg=grey
 " Turn on syntax highlighting
 syntax on
 
@@ -129,6 +129,14 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let g:nerdtree_tabs_synchronize_view=1
+let g:nerdtree_tabs_synchronize_focus=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:nerdtree_open_on_new_tab=1
+set autochdir
+let NERDTreeChDirMode=2
+nnoremap <leader>n :NERDTree .<CR>
+
 
 
 
@@ -143,20 +151,20 @@ augroup javascript_folding
         au FileType javascript setlocal foldmethod=syntax
 augroup END
 "Jsx for React 
-let g:jsx_ext_required = 1
+let g:jsx_ext_required = 0
 let g:jsx_pragma_required = 1
-
+let g:syntastic_javascript_checkers = ['eslint']
 
 "python environment
 let g:syntastic_check_on_open = 1
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 
 
@@ -173,8 +181,13 @@ let g:airline_powerline_fonts = 1
 
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
-nnoremap <C-X> :bdelete<CR>
+nnoremap <C-X> :Bclose<CR>
+nnoremap <F2> :NERDTreeToggle<CR>
+
+"set powerline
+set  rtp+=/usr/local/lib/python3.4/site-packages/powerline/bindings/vim/
+let g:ags_agexe = 'ag --nocolor'
 
 
-
-
+"highlight Comment ctermfg=darkgray
+highlight Comment cterm=underline  ctermfg=darkgray
